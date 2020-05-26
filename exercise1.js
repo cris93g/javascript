@@ -7,6 +7,15 @@
 
 //your code...
 
+let toCels = (temp) => {
+    return (temp - 32) * 5 / 9;
+};
+
+// T(°F) = T(°C) × 9 / 5 + 32 <----- formula
+
+let toFahrenheit =(temp)=>{
+    return (temp * 9/5)+32;
+}
 
 
 
@@ -18,9 +27,9 @@
 
 //your code...
 
-
-
-
+let vote = (age) => {
+    age >= 18 ? console.log('yes') : console.log('no');
+};
 
 
 
@@ -30,8 +39,10 @@
 
 //your code...
 
-
-
+let toArray = (str) => {
+    let splitted = str.split(' ');
+    return splitted.join(' ');
+};
 
 
 
@@ -43,7 +54,11 @@
 //your code...
 
 
-
+let revTelephone = (str) => {
+    let splitted = str.split('');
+    let rev = splitted.reverse();
+    return rev.join('');
+};
 
 
 /************************************************************* */
@@ -53,6 +68,27 @@
 //your code...
 
 
+let car = (make, model, year, color) => {
+    //creates obj and adds values depending on the arguments passed into it could also use Object.create 
+    let newCar = {};
+    newCar.make = make;
+    newCar.model = model;
+    newCar.year = year;
+    newCar.color = color;
+    return newCar;
+};
+
+let myCar = car('chrysler', 200, 2018, 'gray');
+
+let getMyCar = (obj) => {
+    let mak = obj.make;
+    let mod = obj.model;
+    let yea = obj.year;
+    let col = obj.color;
+    console.log(mak, mod, yea, col);
+};
+
+getMyCar(myCar);
 
 
 
@@ -65,6 +101,13 @@
 //your code...
 
 
+let zeroToFifteenth = () => {
+    let i = 0;
+    while (i <= 15) {
+        i % 2 == 0 ? console.log('even') : console.log('odd');
+        i++;
+    }
+};
 
 
 /************************************************************* */
@@ -73,6 +116,22 @@
 
 //your code...
 
+let fizzBuzz = () => {
+    //initialize i for while loop
+    let i = 0;
+    while (i <= 100) {
+        if (i % 15 == 0) {
+            console.log('fizzBuzz');
+        } else if (i % 5 == 0) {
+            console.log('Buzz');
+        } else if (i % 3 == 0) {
+            console.log('Fizz');
+        } else {
+            console.log(i);
+        }
+        i++;
+    }
+};
 
 /************************************************************* */
 // Problem 8:
@@ -83,20 +142,136 @@ const nums = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];
 
 //your code...
 
+let thirds = (arr) => {
+    for (let i = 0; i < arr.length; i++) {
+        //if i is divisible by 3 console.log the num
+        i % 3 == 0 ? console.log(nums[i]) : ''
+    }
+}
 
 
 // Problem 9:
 const foodArray = [ 'potatoes', 'tamales', 'lemon','strawberries','chocolate', 'pudding', {school : 'TEKcamp'} ];
 //access the value of the last element of the array and set it to a variable called school.  print the school variable to the console.
 
+let school = foodArray[6].school;
+console.log(school)
+
 const adjectiveArray = [ 'salty', 'spicy', 'sour', 'sweet', 'rich','creamy','amazing'];
 // Using both nameArray and adjectiveArray, make a
 // "for" loop that console.log()'s a sentence for each
 // corresponding value in the arrays. Add the word "is" or "are" depending on if the food is singular or plural.  "Potatoes are salty", "Lemon is sour".
 
+
+
+
+// THIS was what i first wrote my naive answer but complexity was O(n^2)
+let sentence = (arr1, arr2) => {
+    let arrWithoutObj = [];
+    for (let i = 0; i < arr1.length; i++) {
+        //loops to check if i have a string in the array if not i will push the values of the object into new array
+        if (typeof arr1[i] == 'string') {
+            arrWithoutObj.push(arr1[i])
+        } else {
+            arrWithoutObj.push(...Object.values(arr1[i]))
+        }
+    }
+    for (let i = 0; i < arrWithoutObj.length; i++) {
+        for (let j = 0; j < arr2.length; j++) {
+            //check if index of i and j are the same if they are output a string
+            if (i === j) {
+            //if arr[i]==value ends with s puts first line 'are' else puts 'is'
+                if (arrWithoutObj[i].slice(-1) == 's') {
+                    console.log(`${arrWithoutObj[i]} are ${arr2[j]}`)
+                } else {
+                    console.log(`${arrWithoutObj[i]} is ${arr2[j]}`)
+                }
+            }
+        }
+    }
+}
+
+sentence(foodArray, adjectiveArray)
+
+
+//Secondary answer takes more space but complexity should be O(n)
+let sentence = (arr1, arr2) => {
+    //creates obj
+    let hash = {};
+    let arrWithoutObj = [];
+    for (let i = 0; i < arr1.length; i++) {
+        if (typeof arr1[i] == 'string') {
+            arrWithoutObj.push(arr1[i])
+        } else {
+            arrWithoutObj.push(...Object.values(arr1[i]))
+        }
+    }
+    //goes through array and adds the array without objects to the keys and arr2 to values
+    for (let j = 0; j < arrWithoutObj.length; j++) {
+        console.log(arr2[k])
+        let key = arrWithoutObj[j];
+        let val = arr2[j];
+        hash[key] = val;
+    }
+    //loops through object to console.log() if key has an s at the end
+    for (let item in hash) {
+        if (item.slice(-1) == 's') {
+            console.log(`${item} are ${hash[item]}`)
+        } else {
+            console.log(`${item} is ${hash[item]}`)
+        }
+    }
+}
+
+sentence(foodArray, adjectiveArray)
+
+
 /************************************************************* */
 // Bonus Assignment: Create 4 mathematical function expressions, add,subtract,multiply,divide.  put them in an array, and create a doMath() function that randomly does one of the 4 operations whenever it is run.  the doMath() function should print out what mathetmatical function was carried out.  The doMath() function should return the computed value of any operation performed.
-const operations = [];
-function doMath() {};
+const operations = ['addition', 'subtract', 'multiply', 'divide'];
 
+function doMath(arr, ...items) {
+    //gets random value from array
+  let operation = operations[Math.floor(Math.random() * operations.length)];
+  //if the operation varibale matches with a function it uses the functions in the bottom
+  if (operation == 'addition') {
+    return add(...items);
+  } else if (operation == 'subtract') {
+    return sub(...items);
+  } else if (operation == 'multiply') {
+    return mult(...items);
+  } else if (operation == 'divide') {
+    return div(...items);
+  }
+}
 
+// all these operations will be passed to the one above they all can get a diff ammount of elements passes into and then i use reduce to perform whichever function is needed
+let add = (...items) => {
+  return items.reduce((curr, accum) => {
+    console.log('add');
+    return curr + accum;
+  });
+};
+
+let mult = (...items) => {
+  return items.reduce((curr, accum) => {
+    console.log('multiply');
+    return curr * accum;
+  });
+};
+
+let div = (...items) => {
+  return items.reduce((curr, accum) => {
+    console.log('divide');
+    return curr / accum;
+  });
+};
+
+let sub = (...items) => {
+  return items.reduce((curr, accum) => {
+    console.log('subtract');
+    return curr - accum;
+  });
+};
+
+doMath(operations, 10, 10, 10);
