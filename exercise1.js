@@ -121,11 +121,11 @@ let fizzBuzz = () => {
     let i = 0;
     while (i <= 100) {
         if (i % 15 == 0) {
-            console.log('fizzBuzz');
+            console.log('TEKcamp');
         } else if (i % 5 == 0) {
-            console.log('Buzz');
+            console.log('camp');
         } else if (i % 3 == 0) {
-            console.log('Fizz');
+            console.log('Tek');
         } else {
             console.log(i);
         }
