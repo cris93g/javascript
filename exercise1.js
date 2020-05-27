@@ -54,7 +54,8 @@ let toArray = (str) => {
 //your code...
 
 
-let revTelephone = (str) => {
+let revTelephone = (num) => {
+    let str=num.toStr()
     let splitted = str.split('');
     let rev = splitted.reverse();
     return rev.join('');

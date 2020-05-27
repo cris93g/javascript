@@ -11,6 +11,11 @@ for(let i=0; i<10; i++) {
 
 //your code...
 
+let i=0;
+while(i<10){
+    console.log(' the value of i in the loop is : ' + i);
+}
+
 
 
 
@@ -62,6 +67,25 @@ if(day === "monday") {
     console.log("It's a weekend!")
 }
 
+switch (day) {
+    case 'monday':
+        console.log("we got a long week ahead of us...");
+        break;
+    case 'tuesday':
+        console.log("tuesday's are still beterr than mondays, but LONG way to go still");
+        break;
+    case 'wednesday':
+        console.log("We are smack dab in the middle of the week");
+        break;
+    case 'thursday':
+        console.log("Thursday night... the mood is right");
+        break;
+    case 'friday':
+        console.log("TGIF.  Friday truly is the best day of the week!")
+        break;
+    default:
+        console.log("It's a weekend!")
+}
 
 
 /************************************************************* */
@@ -79,7 +103,9 @@ if (age > 65) console.log("retired"); else {
     console.log("still working...");
 }
 
-
+age > 21 ? console.log("adult") : console.log("minor");
+age > 13 && age < 19 ? console.log('teen') : console.log("not a teenager");
+age > 65 ? console.log("retired"): console.log("still working...");
 /************************************************************* */
 // Problem 6: Create an object literal that represents yourself.  set it to a variable that appropriately describes the object.  Include the following properties:
 /*
@@ -109,7 +135,9 @@ if (age > 65) console.log("retired"); else {
 //Problem 7: create a function that outputs your 3 favorite data types, with a message explaining why you like that data type.
 
 //your code...
-
+let fav = ()=>{
+    
+}
 
 
 /************************************************************* */
