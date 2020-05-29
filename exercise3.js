@@ -8,9 +8,10 @@
 
 
 //your code...
-
-
-
+//first checks if its a string and than checks if the length of it is 0
+let empty = (str) => {
+    typeof str !== 'string' ? console.log('thats not a string') : str.length != 0 ? console.log(false) : console.log(true)
+}
 
 
 /************************************************************* */
@@ -23,6 +24,9 @@
 //your code...
 
 
+let coolString = (str) => {
+    return `Learning JavaScript is ${str}!`
+}
 
 
 /************************************************************* */
@@ -34,6 +38,14 @@
 //your code...
 
 
+let squared = (arr) => {
+    let final = []
+    arr.map(nums => {
+        //raises the power by 2 when adding the numbs
+        return final.push(Math.pow(nums, 2))
+    })
+    return final
+}
 
 
 
@@ -47,7 +59,14 @@
 //your code...
 
 
-
+let greaterThanThree = (arr) => {
+    let biggerThan3 = []
+    arr.map(item => {
+        //checks if item is bigger than 3 if true pushes it to array
+        item>3 ? biggerThan3.push(item):''  
+    })
+    return biggerThan3;
+}
 
 
 
@@ -60,6 +79,12 @@
 //your code...
 
 
+let sumOfFive = (arr) => {
+    //takes in array and reduces adds the elements
+    return arr.reduce((accum, curr) => {
+        return curr + accum;
+    })
+}
 
 
 
@@ -75,6 +100,23 @@
 //your code...
 
 
+let genome = (str) => {
+    let spl = str.split('');
+    let final = [];
+    //simple if i C send G to the array
+    for (let i = 0; i < spl.length; i++) {
+        if (spl[i] == 'G') {
+            final.push('C')
+        } else if (spl[i] == 'C') {
+            final.push('G')
+        } else if (spl[i] == 'A') {
+            final.push('T')
+        } else if (spl[i] == 'T') {
+            final.push('A')
+        }
+    }
+    return final;
+}
 
 
 
@@ -85,17 +127,96 @@
 // 7.a - Write a function to find the maximum numerical value of the given array.  Get rid of any non numerical values.  Convert the strings that are numbers to an actual number data type.  ("one" => 1) ("1" => 1).  Use array methods to perform this task.  
 const numbers = [2,23,1,2,1,1,1,2,2.5,20,200,2000,,{k:1},20000,19999,1878,140,23,4,"sk",true,true,"true-dat","nice","one","two","three","3","tea",[]];
 
-function maxNumber(numbers) {
-    //your code...
-}
-
-// 7.b -Write a function that sorts the given numbers array.  Allow the function to sort the array in descending order
-
-function sortNums(numbers,desc=false) {
-    //your code...
+let max = (arr) => {
+  let nums = [];
+   arr.map(item=>{
+       //checks specific values than checks if typeof is number if so pushes to array
+    if (item == 'one') {
+      nums.push(1);
+    }
+    if (item == 'two') {
+      nums.push(2);
+    }
+    if(item=='3'){
+        nums.push(3)
+    }
+    if (item == 'three') {
+      nums.push(3);
+    }
+    if (typeof item === 'number') {
+      nums.push(item);
+    }
+    })
+  return Math.max(...nums);
 };
 
+max(numbers)
+// 7.b -Write a function that sorts the given numbers array.  Allow the function to sort the array in descending order
 
+
+let sorted = (arr, mer) => {
+  let nums = [];
+  arr.map((item) => {
+      //same as above
+    if (item == 'one') {
+      nums.push(1);
+    }
+    if (item == 'two') {
+      nums.push(2);
+    }
+    if (item == '3') {
+      nums.push(3);
+    }
+    if (item == 'three') {
+      nums.push(3);
+    }
+    if (typeof item === 'number') {
+      nums.push(item);
+    }
+  });
+  console.log(mer(nums));
+};
+
+//my implementation of merge sort but it does it backwards
+let reverseMergeSort = (arr) => {
+    //checks if array length is 1 if so returns it
+  if (arr.length === 1) {
+    return arr;
+  }
+  //gets middle index
+  let middle = Math.floor(arr.length / 2);
+  //cuts left side
+  let left = arr.slice(0, middle);
+  //cuts right side
+  let right = arr.slice(middle);
+  //recursevly  does above function
+  let sortedLeft = reverseMergeSort(left);
+  let sortedRight = reverseMergeSort(right);
+  return merge(sortedLeft, sortedRight);
+};
+//helper function to main function
+let merge = (left, right) => {
+
+  let results = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+  //while the left Index is less than left side so until its fully splitted 
+  while (leftIndex < left.length && rightIndex < right.length) {
+      //if number in the left is less than number in the right push right THIS IS WHAT PRETTY MUCH MAKES IT GO FROM BIG TO LOW
+    if (left[leftIndex] < right[rightIndex]) {
+      results.push(right[rightIndex]);
+      rightIndex++;
+    } else {
+        //SECOND PART OF PUSHING 
+      results.push(left[leftIndex]);
+      leftIndex++;
+    }
+  }
+  //start adding all the pieces that were splittled above
+  return results.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+};
+
+sorted(numbers, reverseMergeSort);
 
 
 /************************************************************* */
@@ -103,14 +224,19 @@ function sortNums(numbers,desc=false) {
 //add an example of at least 5 JavaScript data types to the given mapObj.  The key is the example data type, and the value is the name of the data type.  An object data type has already been set as the 1st key / val pair.
 
 const mapObj = new Map();
-mapObj.set({company : "TEKsystems"},"object");
+//adds valyes to the Map
+mapObj.set('object', { company: 'TEKsystems' });
+mapObj.set(`string`, `string`);
+mapObj.set(`number`, 5);
+mapObj.set(`boolean`, true);
+//arrays are technically objects
+mapObj.set('array', []);
 
-
-console.log(mapObj.has({company : "TEKsystems"}));  
+   
 //The above console.log() statmeent returns false.  Write another console.log() statement explaining why this line of code prints false.  Refactor the code on line 106, so you can successfully check to see if {company : "TEKsystems"} exists in the mapObj.
-
+console.log(mapObj.has('object')); 
 //your code...
-
+console.log(`ur going through the values not keys`);
 //loop through the mapObj and create a new array of only the data types, leaving out the example keys of the mapObj.  Use array methods to do this.  Example output : ['string',number','boolean',array','object']
 
 
@@ -120,16 +246,30 @@ console.log(mapObj.has({company : "TEKsystems"}));
 let ones = [1,11,111,1111,11111,111111,1111111,11111111,111111111,1111111111];
 //reverse the array, without modifying the ones array.
 
+let arrayRevese = (arr) => {
+    //spread opperator to get the values in reverse using .reverse
+    let reverse = [...arr].reverse();
+    return reverse;
+}
 
+arrayRevese(ones)
 /************************************************************* */
 //Problem 12:
 //create a function called performer(cb) that takes in a callback function and runs that callback function.  It should return the output of the callback function.
-
-function performer(cb) {
-    //code goes here
+let performer=(cb)=> {
+  let welcome=`Hey there, how's it going?`
+  return cb(welcome);
 }
+let hey=(str)=> console.log(str);
 
-
+performer(hey);
 /************************************************************* */
 //Bonus assignment:
 //research a new feature of ES6+ and create an example of it's use case here.  Be sure to write comments explaining what the feature is and why it is useful.
+
+let defaultP = (name = 'Amir') => console.log(`hi ${name} a 3 would be nice`);
+
+
+defaultP();
+
+//I Chose default parameters since it gave us a way to put parameters even if their not passed in or when something is usually picked we can have it if the user doesnt put it.

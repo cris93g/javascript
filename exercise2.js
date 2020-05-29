@@ -27,11 +27,8 @@ while(i<10){
 //your code...
 //my add
 let sum=(a,b)=>a+b;
-//my multiplication
 let mult=(c,d)=>c*d;
-//my division
 let div=(e,f)=>e/f;
-//my power^2
 let powered=(g)=>Math.pow(g,2);
 let final=(a,b)=>console.log(powered(div(mult(sum(a,b),20),10),2));
 
